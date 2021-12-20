@@ -9,7 +9,9 @@ import {
     StyledCardAddress,
     StyledCardFooterContainer,
     StyledCardRatingValue,
+    StyledCardRatingTextContainer,
     StyledCardRatingRank,
+    StyledCardReviewCount,
 } from './property-card-styles';
 
 const PropertyCard = ({ property }) => {
@@ -25,7 +27,10 @@ const PropertyCard = ({ property }) => {
                     <StyledCardAddress>{address}</StyledCardAddress>
                     <StyledCardFooterContainer>
                         <StyledCardRatingValue>{ratingValue}</StyledCardRatingValue>
-                        <StyledCardRatingRank>Excellent!</StyledCardRatingRank>
+                        <StyledCardRatingTextContainer>
+                            <StyledCardRatingRank>Excellent!</StyledCardRatingRank>
+                            <StyledCardReviewCount>4594 views</StyledCardReviewCount>
+                        </StyledCardRatingTextContainer>
                     </StyledCardFooterContainer>
                 </StyledCardBodyContainer>
             </StyledCardContentContainer>

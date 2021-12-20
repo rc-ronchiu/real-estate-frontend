@@ -10,3 +10,23 @@ export const StyledHeaderBar = styled.div`
     min-height: 8rem;
     background-color: ${colors.header};
 `;
+
+export const StyledHeaderContainer = styled.div`
+    display: flex;
+    width: 1100px;
+    align-items: center;
+`;
+
+export const StyledLogoContainer = styled.div`
+    display: flex;
+    align-self: center;
+`;
+
+export const StyledLogo = styled.img`
+    height: 60px;
+    width: 60px;
+    margin-right: 8px;
+`;
+
+export const StyledTitle = styled.h1`
+`;

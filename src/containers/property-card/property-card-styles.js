@@ -83,7 +83,21 @@ export const StyledCardRatingValue = styled.div`
     font-weight: 1000;
 `;
 
-export const StyledCardRatingRank = styled.p`
-    font-size: 1;
+export const StyledCardRatingTextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     margin-left: 0.2rem;
+    justify-content: center;
+`;
+
+export const StyledCardRatingRank = styled.p`
+    font-size: 1rem;
+    margin: 0;
+    width: 100%;
+`;
+
+export const StyledCardReviewCount = styled.p`
+    font-size: 0.6rem;
+    margin: 0;
+    width: 100%;
 `;

@@ -2,17 +2,30 @@ import React from 'react';
 import PropertyCard from '../../containers/property-card';
 import Layout from '../../components/layout';
 import { ShaunTheSheep } from '../../assets/images';
+import { useQuery, gql } from '@apollo/client';
+
+const PROPERTIES = gql`
+    query PropertiesForHome {
+        propertiesForHome {
+            id
+            title
+            address
+            ratingValue
+            views
+        }
+    }
+`;
 
 const IndexPage = () => {
-    const property = {title: 'First property', address: 'No. 4, some street, some city', ratingValue: 99, thumbnail: ShaunTheSheep};
+    
+    const { loading, error, data} = useQuery(PROPERTIES);
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
     return (
         <Layout grid>
-            <PropertyCard property={property} />
-            <PropertyCard property={property} />
-            <PropertyCard property={property} />
-            <PropertyCard property={property} />
-            <PropertyCard property={property} />
-            <PropertyCard property={property} />
+            {data?.propertiesForHome?.map((property) => (
+                <PropertyCard key={property.id} property={{...property, thumbnail: ShaunTheSheep}} />
+            ))}
         </Layout>
     );
 };
