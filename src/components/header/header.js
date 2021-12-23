@@ -1,4 +1,4 @@
-import { StyledHeaderBar, StyledHeaderContainer, StyledLogoContainer, StyledLogo, StyledTitle } from './header-styles';
+import { StyledHeaderBar, StyledHeaderContainer, StyledLogoContainer, StyledLogo, StyledTitle, StyledTitleContainer } from './header-styles';
 import { Logo } from '../../assets/images';
 
 
@@ -6,10 +6,12 @@ const Header = () => {
     return (
         <StyledHeaderBar>
             <StyledHeaderContainer>
-                <StyledLogoContainer>
+                <StyledLogoContainer to='/'>
                     <StyledLogo src={Logo} alt={'Logo'}/>
                 </StyledLogoContainer>
-                <StyledTitle>Real Estate</StyledTitle>
+                <StyledTitleContainer to='/'>
+                    <StyledTitle>Real Estate</StyledTitle>
+                </StyledTitleContainer>
             </StyledHeaderContainer>
         </StyledHeaderBar>
     );

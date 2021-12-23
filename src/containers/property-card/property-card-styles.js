@@ -1,7 +1,8 @@
+import { Link } from '@reach/router';
 import styled from 'styled-components';
 import { colors } from '../../utils/styles'
 
-export const StyledCardContainer = styled.div`
+export const StyledCardContainer = styled(Link)`
   border-radius: 0.3rem;
   border-color: ${colors.border};
   border-style: solid;
@@ -21,6 +22,7 @@ export const StyledCardContainer = styled.div`
     background-color: #f5f5f5;
   }
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const StyledCardContentContainer = styled.div`

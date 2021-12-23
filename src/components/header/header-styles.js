@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../utils/styles';
+import { Link } from '@reach/router';
 
 export const StyledHeaderBar = styled.div`
     display: flex;
@@ -17,7 +18,7 @@ export const StyledHeaderContainer = styled.div`
     align-items: center;
 `;
 
-export const StyledLogoContainer = styled.div`
+export const StyledLogoContainer = styled(Link)`
     display: flex;
     align-self: center;
 `;
@@ -28,5 +29,10 @@ export const StyledLogo = styled.img`
     margin-right: 8px;
 `;
 
+export const StyledTitleContainer = styled(Link)`
+    text-decoration: none;
+`;
+
 export const StyledTitle = styled.h1`
+    color: ${colors.black};
 `;

@@ -1,8 +1,9 @@
 import React from 'react';
-import { 
-    StyledCardContentContainer, 
-    StyledCardContainer, 
-    StyledCardImageContainer, 
+import { gql, useMutation } from '@apollo/client';
+import {
+    StyledCardContentContainer,
+    StyledCardContainer,
+    StyledCardImageContainer,
     StyledCardImage,
     StyledCardBodyContainer,
     StyledCardTitle,
@@ -14,13 +15,30 @@ import {
     StyledCardReviewCount,
 } from './property-card-styles';
 
+const INCREMENT_PROPERTY_VIEWS = gql`
+    mutation IncrementPropertyViews($incrementPropertyViewsId: ID!) {
+    incrementPropertyViews(id: $incrementPropertyViewsId) {
+        code
+        success
+        message
+        property {
+            id
+            views
+        }
+    }
+}`;
+
 const PropertyCard = ({ property }) => {
-    const { title, thumbnail, address, ratingValue, id } = property;
+    const { title, thumbnail, address, ratingValue, views, id } = property;
+    const [ incrementPropertyViews ] = useMutation(INCREMENT_PROPERTY_VIEWS, {
+        variables: { incrementPropertyViewsId: id }
+    })
+
     return (
-        <StyledCardContainer>
+        <StyledCardContainer to={`/property/${id}`} onClick={incrementPropertyViews}>
             <StyledCardContentContainer>
                 <StyledCardImageContainer>
-                    <StyledCardImage src={thumbnail} alt={title}/>
+                    <StyledCardImage src={thumbnail} alt={title} />
                 </StyledCardImageContainer>
                 <StyledCardBodyContainer>
                     <StyledCardTitle>{title}</StyledCardTitle>
@@ -29,13 +47,12 @@ const PropertyCard = ({ property }) => {
                         <StyledCardRatingValue>{ratingValue}</StyledCardRatingValue>
                         <StyledCardRatingTextContainer>
                             <StyledCardRatingRank>Excellent!</StyledCardRatingRank>
-                            <StyledCardReviewCount>4594 views</StyledCardReviewCount>
+                            <StyledCardReviewCount>{`${views} views`}</StyledCardReviewCount>
                         </StyledCardRatingTextContainer>
                     </StyledCardFooterContainer>
                 </StyledCardBodyContainer>
             </StyledCardContentContainer>
         </StyledCardContainer>
-
     );
 }
 

@@ -3,7 +3,7 @@ import { colors } from '../../utils/styles';
 
 export const StyledPageContainer = styled.div`
     display: flex;
-    justify-content: ${(props) => props.grid ? 'center' : 'top'};
+    justify-content: ${(props) => props.grid ? 'flex-start' : 'top'};
     flex-direction: ${(props) => props.grid ? 'row' : 'column'};
     flex-wrap: wrap;
     align-self: center;
