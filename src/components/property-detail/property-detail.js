@@ -1,4 +1,5 @@
 import React from 'react';
+import FileUpload from '../../containers/file-upload';
 import { 
     StyledCover, 
     StyledPropertyDetail, 
@@ -7,9 +8,11 @@ import {
     StyledDetailItem,
     StyledDescription
 } from './property-detail-styles';
+import { DefaultHouse } from '../../assets/images';
 
 const PropertyDetail = ({ property }) => {
     const {
+        id,
         title,
         address,
         thumbnail,
@@ -20,7 +23,7 @@ const PropertyDetail = ({ property }) => {
 
     return (
         <>
-            <StyledCover src={thumbnail} alt={title} />
+            {thumbnail === DefaultHouse ? <FileUpload id={id} thumbnail={thumbnail}/> : <StyledCover src={thumbnail} alt={title} />}
             <StyledPropertyDetail>
                 <StyledDetailRow>
                     <h1>{title}</h1>

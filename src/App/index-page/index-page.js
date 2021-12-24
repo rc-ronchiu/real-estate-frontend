@@ -1,7 +1,7 @@
 import React from 'react';
 import PropertyCard from '../../containers/property-card';
 import Layout from '../../components/layout';
-import { ShaunTheSheep } from '../../assets/images';
+import { DefaultHouse } from '../../assets/images';
 import { useQuery, gql } from '@apollo/client';
 
 const PROPERTIES = gql`
@@ -12,6 +12,7 @@ const PROPERTIES = gql`
             address
             ratingValue
             views
+            thumbnailUrl
         }
     }
 `;
@@ -23,9 +24,10 @@ const IndexPage = () => {
     if (error) return `Error! ${error.message}`;
     return (
         <Layout grid>
-            {data?.propertiesForHome?.map((property) => (
-                <PropertyCard key={property.id} property={{...property, thumbnail: ShaunTheSheep}} />
-            ))}
+            {data?.propertiesForHome?.map((property) => {
+                const thumbnail = property.thumbnailUrl === null ? DefaultHouse : property.thumbnailUrl;
+                return (<PropertyCard key={property.id} property={{...property, thumbnail: thumbnail}} />);
+            })}
         </Layout>
     );
 };

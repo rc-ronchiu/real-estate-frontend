@@ -1,6 +1,8 @@
-import ShaunTheSheep from './ShaunTheSheep.jpg';
 import Logo from './Logo.png';
+import Add from './Add.png';
+import DefaultHouse from './DefaultHouse.png';
 export {
-    ShaunTheSheep,
-    Logo
+    Logo,
+    Add,
+    DefaultHouse
 };
