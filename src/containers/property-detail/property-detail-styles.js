@@ -49,19 +49,6 @@ export const StyledDetailItem = styled.div`
     color: ${colors.grey};
 `;
 
-export const StyledRatingValue = styled.div`
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.3rem;
-    background-color: ${colors.header};
-    font-size: 1.4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${colors.black};
-    font-weight: 1000;
-`;
-
 export const StyledDescription = styled.p`
     font-size: 1.2rem;
     color: ${colors.grey};

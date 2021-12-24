@@ -9,11 +9,11 @@ import {
     StyledCardTitle,
     StyledCardAddress,
     StyledCardFooterContainer,
-    StyledCardRatingValue,
     StyledCardRatingTextContainer,
     StyledCardRatingRank,
     StyledCardReviewCount,
 } from './property-card-styles';
+import RatingValue from '../../components/rating-value';
 
 const INCREMENT_PROPERTY_VIEWS = gql`
     mutation IncrementPropertyViews($incrementPropertyViewsId: ID!) {
@@ -44,9 +44,9 @@ const PropertyCard = ({ property }) => {
                     <StyledCardTitle>{title}</StyledCardTitle>
                     <StyledCardAddress>{address}</StyledCardAddress>
                     <StyledCardFooterContainer>
-                        <StyledCardRatingValue>{ratingValue}</StyledCardRatingValue>
+                        <RatingValue>{ratingValue}</RatingValue>
                         <StyledCardRatingTextContainer>
-                            <StyledCardRatingRank>Excellent!</StyledCardRatingRank>
+                            <StyledCardRatingRank>{ratingValue > 6 ? ratingValue > 8 ? 'Excellent' : 'Good' : 'Average'}</StyledCardRatingRank>
                             <StyledCardReviewCount>{`${views} views`}</StyledCardReviewCount>
                         </StyledCardRatingTextContainer>
                     </StyledCardFooterContainer>

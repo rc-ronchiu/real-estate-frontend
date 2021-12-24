@@ -1,4 +1,4 @@
-import { StyledLayout, StyledPageContainer } from "./layout-styles";
+import { StyledPageContainer } from "./layout-styles";
 import Header from '../header';
 const Layout = ({ fullWidth, children, grid }) => {
     return (

@@ -1,13 +1,13 @@
 import React from 'react';
-import FileUpload from '../../containers/file-upload';
+import FileUpload from '../file-upload';
 import { 
     StyledCover, 
     StyledPropertyDetail, 
     StyledDetailRow, 
-    StyledRatingValue, 
     StyledDetailItem,
     StyledDescription
 } from './property-detail-styles';
+import RatingValue from '../../components/rating-value';
 import { DefaultHouse } from '../../assets/images';
 
 const PropertyDetail = ({ property }) => {
@@ -31,7 +31,7 @@ const PropertyDetail = ({ property }) => {
                 <StyledDetailRow>
                     <StyledDetailItem>
                         <h4>Rating</h4>
-                        <StyledRatingValue>{ratingValue}</StyledRatingValue>
+                        <RatingValue>{ratingValue}</RatingValue>
                     </StyledDetailItem>
                     <StyledDetailItem>
                         <h4>Address</h4>

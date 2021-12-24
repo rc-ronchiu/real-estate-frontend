@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Layout from '../../components/layout';
-import PropertyDetail from '../../components/property-detail';
+import PropertyDetail from '../../containers/property-detail';
 import { DefaultHouse } from '../../assets/images';
 
 const PROPERTY = gql`
