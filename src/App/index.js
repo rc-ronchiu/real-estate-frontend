@@ -8,16 +8,17 @@ import { GlobalDataContext } from '../utils/context';
 
 export default function App() {
     const [showRatingModal, setShowRatingModal] = useState(false);
+    const [ratingModalPropertyId, setRatingModalPropertyId] = useState('');
 
     return (
         <GlobalDataContext.Provider 
             value={{
-                showRatingModal,
-                setShowRatingModal
+                setShowRatingModal,
+                setRatingModalPropertyId
             }}
         >
             <StyledGlobalLayout />
-            <RatingModal showModal={showRatingModal} setShowModel={setShowRatingModal}/>
+            <RatingModal showModal={showRatingModal} setShowModel={setShowRatingModal} propertyId={ratingModalPropertyId}/>
             <Router primary={false} component={Fragment}>
                 <IndexPage path='/' />
                 <PropertyPage path='property/:propertyId' />

@@ -13,8 +13,8 @@ import { GlobalDataContext } from '../../utils/context';
 
 const PropertyDetail = ({ property }) => {
     const {
-        showRatingModal,
-        setShowRatingModal
+        setShowRatingModal,
+        setRatingModalPropertyId
     } = useContext(GlobalDataContext);
     const {
         id,
@@ -28,6 +28,7 @@ const PropertyDetail = ({ property }) => {
 
     const openModal = () => {
         setShowRatingModal(prev => !prev);
+        setRatingModalPropertyId(id);
     };
 
     return (
@@ -39,8 +40,9 @@ const PropertyDetail = ({ property }) => {
                 </StyledDetailRow>
                 <StyledDetailRow>
                     <StyledDetailItem>
-                        <button onClick={openModal}><h4>Rating</h4></button>
+                        <h4>Rating</h4>
                         <RatingValue>{ratingValue}</RatingValue>
+                        <div onClick={openModal}>Leave your rating here</div>
                     </StyledDetailItem>
                     <StyledDetailItem>
                         <h4>Address</h4>

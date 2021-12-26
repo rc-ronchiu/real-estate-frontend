@@ -46,7 +46,7 @@ const PropertyCard = ({ property }) => {
                     <StyledCardFooterContainer>
                         <RatingValue>{ratingValue}</RatingValue>
                         <StyledCardRatingTextContainer>
-                            <StyledCardRatingRank>{ratingValue > 6 ? ratingValue > 8 ? 'Excellent' : 'Good' : 'Average'}</StyledCardRatingRank>
+                            <StyledCardRatingRank>{ratingValue > 3 ? ratingValue > 4 ? 'Excellent' : 'Good' : 'Average'}</StyledCardRatingRank>
                             <StyledCardReviewCount>{`${views} views`}</StyledCardReviewCount>
                         </StyledCardRatingTextContainer>
                     </StyledCardFooterContainer>

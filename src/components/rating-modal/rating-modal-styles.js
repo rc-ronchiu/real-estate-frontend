@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AiOutlineClose, AiOutlineSmile, AiOutlineMeh, AiOutlineFrown } from 'react-icons/ai';
+import { AiOutlineSmile, AiOutlineMeh, AiOutlineFrown } from 'react-icons/ai';
 import { colors } from '../../utils/styles';
 
 export const StyledModalBackground = styled.div`
@@ -63,9 +63,13 @@ export const StyledModalRatingContainer = styled.div`
 `;
 
 export const StyledModalRatingIconContainer = styled.div`
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
+    &:hover * {
+        color: ${(props) => (props.children[1].props.children === 'Great' ? colors.green : props.children[1].props.children === 'Meh' ? colors.yellow : colors.red)}
+    }
 `;
 
 export const StyledModalRatingSmile = styled(AiOutlineSmile)`
@@ -73,9 +77,9 @@ export const StyledModalRatingSmile = styled(AiOutlineSmile)`
     height: 100px;
     padding: 0;
     color: ${colors.grey};
-    &:hover {
+    /* &:hover {
         color: ${colors.green};
-    }
+    } */
 `;
 
 export const StyledModalRatingMeh = styled(AiOutlineMeh)`
@@ -83,9 +87,9 @@ export const StyledModalRatingMeh = styled(AiOutlineMeh)`
     height: 100px;
     padding: 0;
     color: ${colors.grey};
-    &:hover {
+    /* &:hover {
         color: ${colors.yellow};
-    }
+    } */
 `;
 
 export const StyledModalRatingFrown = styled(AiOutlineFrown)`
@@ -93,7 +97,7 @@ export const StyledModalRatingFrown = styled(AiOutlineFrown)`
     height: 100px;
     padding: 0;
     color: ${colors.grey};
-    &:hover {
+    /* &:hover {
         color: ${colors.red};
-    }
+    } */
 `;
