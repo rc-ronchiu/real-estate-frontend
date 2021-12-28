@@ -10,6 +10,7 @@ import {
 import RatingValue from '../../components/rating-value';
 import { DefaultHouse } from '../../assets/images';
 import { GlobalDataContext } from '../../utils/context';
+import PropertyComment from '../property-comment';
 
 const PropertyDetail = ({ property }) => {
     const {
@@ -23,7 +24,8 @@ const PropertyDetail = ({ property }) => {
         thumbnail,
         ratingValue,
         views,
-        description
+        description,
+        comments
     } = property;
 
     const openModal = () => {
@@ -53,7 +55,10 @@ const PropertyDetail = ({ property }) => {
                         <div>{views}</div>
                     </StyledDetailItem>
                 </StyledDetailRow>
-                <StyledDescription>{description}</StyledDescription>
+                <StyledDetailRow>
+                    <StyledDescription>{description}</StyledDescription>
+                </StyledDetailRow>
+                <PropertyComment propertyId={id} comments={comments}/>
             </StyledPropertyDetail>
         </>
     );

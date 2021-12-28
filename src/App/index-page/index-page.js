@@ -3,7 +3,6 @@ import PropertyCard from '../../containers/property-card';
 import Layout from '../../components/layout';
 import { DefaultHouse } from '../../assets/images';
 import { useQuery, gql } from '@apollo/client';
-import RatingValue from '../../components/rating-value';
 
 const PROPERTIES = gql`
     query PropertiesForHome {
@@ -13,6 +12,7 @@ const PROPERTIES = gql`
             address
             ratingValue
             views
+            ratings
             thumbnailUrl
         }
     }

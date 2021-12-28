@@ -39,10 +39,6 @@ export const StyledCloseModalButton = styled.button`
     &:hover {
         background-color: #ad1457;
     }
-    &:disabled {
-        cursor: default;
-        opacity: 0.7;
-    }
     cursor: pointer;
     position: absolute;
     bottom: 10px;

@@ -14,7 +14,8 @@ export const StyledCardContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 380;
+  height: 24rem;
+  width: 20rem;
   margin: 0.5rem;
   overflow: hidden;
   position: relative;

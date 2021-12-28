@@ -29,7 +29,7 @@ const INCREMENT_PROPERTY_VIEWS = gql`
 }`;
 
 const PropertyCard = ({ property }) => {
-    const { title, thumbnail, address, ratingValue, views, id } = property;
+    const { title, thumbnail, address, ratingValue, views, ratings, id } = property;
     const [ incrementPropertyViews ] = useMutation(INCREMENT_PROPERTY_VIEWS, {
         variables: { incrementPropertyViewsId: id }
     })
@@ -47,7 +47,7 @@ const PropertyCard = ({ property }) => {
                         <RatingValue>{ratingValue}</RatingValue>
                         <StyledCardRatingTextContainer>
                             <StyledCardRatingRank>{ratingValue > 3 ? ratingValue > 4 ? 'Excellent' : 'Good' : 'Average'}</StyledCardRatingRank>
-                            <StyledCardReviewCount>{`${views} views`}</StyledCardReviewCount>
+                            <StyledCardReviewCount>{`${views} views · ${ratings} ratings`}</StyledCardReviewCount>
                         </StyledCardRatingTextContainer>
                     </StyledCardFooterContainer>
                 </StyledCardBodyContainer>

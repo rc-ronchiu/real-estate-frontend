@@ -6,7 +6,7 @@ export const StyledRatingValue = styled.div`
     width: 3rem;
     border-radius: 0.3rem;
     background-color: ${
-        (props) => (props.children > 3 ? props.children > 4 ? colors.green : colors.yellow : colors.red)
+        (props) => (props.children > 0 ? props.children > 3 ? props.children > 4 ? colors.green : colors.yellow : colors.red : colors.grey)
     };
     font-size: 1.4rem;
     display: flex;

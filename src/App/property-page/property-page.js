@@ -14,6 +14,11 @@ const PROPERTY = gql`
             views
             description
             thumbnailUrl
+            comments {
+                id
+                author
+                comment
+            }
         }
     }
 `;
