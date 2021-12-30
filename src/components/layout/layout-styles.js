@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledPageContainer = styled.div`
     display: flex;
-    justify-content: ${(props) => props.grid ? 'flex-start' : 'top'};
-    flex-direction: ${(props) => props.grid ? 'row' : 'column'};
+    justify-content: center;
+    flex-direction: row;
     flex-wrap: wrap;
     align-self: center;
     flex-grow: 1;

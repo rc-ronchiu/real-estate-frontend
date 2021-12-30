@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { colors } from '../../utils/styles';
 
 export const StyledCover = styled.img`
-    object-fit: scale-down;
-    max-height: 400px;
+    object-fit: cover;
+    width: 100%;
+    height: 40rem;
     border-radius: 4px;
     margin-bottom: 30px;
     margin-top: 30px;

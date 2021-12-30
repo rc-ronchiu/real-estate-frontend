@@ -1,10 +1,10 @@
 import { StyledPageContainer } from "./layout-styles";
 import Header from '../header';
-const Layout = ({ fullWidth, children, grid }) => {
+const Layout = ({ fullWidth, children }) => {
     return (
       <>
         <Header />
-        <StyledPageContainer fullWidth={fullWidth} grid={grid}>
+        <StyledPageContainer fullWidth={fullWidth}>
           {children}
         </StyledPageContainer>
       </>
