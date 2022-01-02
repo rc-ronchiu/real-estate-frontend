@@ -5,7 +5,6 @@ export const StyledPageContainer = styled.div`
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    align-self: center;
     flex-grow: 1;
     padding: 0 20%;
     padding-bottom: 40;

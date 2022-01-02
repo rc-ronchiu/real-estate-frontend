@@ -9,10 +9,13 @@ import { GlobalDataContext } from '../utils/context';
 export default function App() {
     const [showRatingModal, setShowRatingModal] = useState(false);
     const [ratingModalPropertyId, setRatingModalPropertyId] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
 
     return (
         <GlobalDataContext.Provider 
             value={{
+                currentPage,
+                setCurrentPage,
                 setShowRatingModal,
                 setRatingModalPropertyId
             }}
