@@ -44,7 +44,6 @@ export const AuthModal = ({ showModal, setShowModel }) => {
             }
         });
         const token = response.data.login.token;
-        // console.log(token);
         localStorage.setItem('userToken', token);
     };
     const animation = useSpring({

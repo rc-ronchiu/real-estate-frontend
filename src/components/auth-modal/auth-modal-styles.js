@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { AiOutlineSmile, AiOutlineMeh, AiOutlineFrown } from 'react-icons/ai';
 import { colors } from '../../utils/styles';
 
 export const StyledModalBackground = styled.div`
