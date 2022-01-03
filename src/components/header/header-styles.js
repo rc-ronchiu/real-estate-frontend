@@ -16,11 +16,20 @@ export const StyledHeaderContainer = styled.div`
     display: flex;
     width: 1100px;
     align-items: center;
+    position: relative;
 `;
 
 export const StyledLogoContainer = styled(Link)`
     display: flex;
     align-self: center;
+`;
+
+export const StyledHeaderButton = styled.div`
+    position: absolute;
+    right: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
 `;
 
 export const StyledLogo = styled.img`

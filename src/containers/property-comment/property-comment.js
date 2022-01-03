@@ -91,7 +91,7 @@ const PropertyComment = ({ propertyId, comments }) => {
                         <StyledCommentAuthor>{comment.author}</StyledCommentAuthor>
                         <StyledCommentText>{comment.comment}</StyledCommentText>
                     </StyledCommentContent>
-                    <StyledCommentDeleteButton onClick={() => dispatch({ type: "REMOVE_COMMENT", payload: comment.id })}>Delete</StyledCommentDeleteButton>
+                    {localStorage.getItem('userToken') && <StyledCommentDeleteButton onClick={() => dispatch({ type: "REMOVE_COMMENT", payload: comment.id })}>Delete</StyledCommentDeleteButton>}
                 </StyledComment>
             ))}
             <StyledComment>
