@@ -33,8 +33,8 @@ export const StyledHeaderButton = styled.div`
 `;
 
 export const StyledLogo = styled.img`
-    height: 60px;
-    width: 60px;
+    height: 120px;
+    width: 120px;
     margin-right: 8px;
 `;
 
@@ -43,5 +43,6 @@ export const StyledTitleContainer = styled(Link)`
 `;
 
 export const StyledTitle = styled.h1`
-    color: ${colors.black};
+    color: ${colors.title};
+    font-family: system-ui;
 `;

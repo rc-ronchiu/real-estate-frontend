@@ -12,8 +12,9 @@ export const colors = {
     border: '#cdc9c3',
     primary: '#3ddc97',
     secondary: '#785964',
-    header: '#256eff',
+    header: '#14213d',
     text: '#454545',
+    title: '#fca311'
 }
 
 export const StyledGlobalLayout = createGlobalStyle`

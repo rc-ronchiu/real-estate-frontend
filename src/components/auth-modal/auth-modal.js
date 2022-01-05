@@ -17,6 +17,11 @@ const LOGIN = gql`
             success
             message
             token
+            user {
+                id
+                username
+                email
+            }
         }
     }
 `;
@@ -44,7 +49,9 @@ export const AuthModal = ({ showModal, setShowModel }) => {
             }
         });
         const token = response.data.login.token;
+        const user = response.data.login.user;
         localStorage.setItem('userToken', token);
+        localStorage.setItem('user', JSON.stringify(user));
     };
     const animation = useSpring({
         config: {
