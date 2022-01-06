@@ -18,12 +18,12 @@ const UPDATE_RATING = gql`
     }
 `;
 
-export const RatingModal = ({ showModal, setShowModel, propertyId }) => {
+export const RatingModal = ({ showModal, setShowModal, propertyId }) => {
     const modalRef = useRef(null);
     const [ updateRating ] = useMutation(UPDATE_RATING);
     const closeModal = (e) => {
         if(modalRef.current === e.target) {
-            setShowModel(false);
+            setShowModal(false);
         };
     };
     const handleRating = async (rating) => {
@@ -33,7 +33,7 @@ export const RatingModal = ({ showModal, setShowModel, propertyId }) => {
                 rating: rating
             }
         });
-        setShowModel(false);
+        setShowModal(false);
     };
     const animation = useSpring({
         config: {
@@ -64,7 +64,7 @@ export const RatingModal = ({ showModal, setShowModel, propertyId }) => {
                                     <StyledModalSubtitle>Awful</StyledModalSubtitle>
                                 </StyledModalRatingIconContainer>
                             </StyledModalRatingContainer>
-                            <StyledCloseModalButton onClick={() => setShowModel(false)}>Never mind!</StyledCloseModalButton>
+                            <StyledCloseModalButton onClick={() => setShowModal(false)}>Never mind!</StyledCloseModalButton>
                         </StyledModalContainer>
                     </animated.div>
                 </StyledModalBackground>

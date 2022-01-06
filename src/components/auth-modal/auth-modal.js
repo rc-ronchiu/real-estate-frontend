@@ -6,8 +6,17 @@ import {
     StyledInput,
     StyledModalBackground,
     StyledModalContainer,
+    StyledModalRadio,
+    StyledModalLabel,
+    StyledModalSliderContainer,
+    StyledModalSliderTab,
     StyledModalText,
-    StyledModalTitle
+    StyledModalLoginTitle,
+    StyledModalSignupTitle,
+    StyledModalTitleContainer,
+    StyledModalLoginContainer,
+    StyledModalSignupContainer,
+    StyledSubmitButton
 } from './auth-modal-styles';
 
 const LOGIN = gql`
@@ -26,23 +35,54 @@ const LOGIN = gql`
     }
 `;
 
-export const AuthModal = ({ showModal, setShowModel }) => {
+const REGISTER = gql`
+    mutation Register($username: String!, $email: String!, $password: String!) {
+        register(username: $username, email: $email, password: $password) {
+            code
+            success
+            message
+            user {
+                id
+                username
+                email
+            }
+        }
+    }
+`;
+
+
+export const AuthModal = ({ showModal, setShowModal }) => {
     const [showLoginFail, setShowLoginFail] = useState(false);
     const [loginFailMessage, setLoginFailMessage] = useState('');
+    const [showSignupFail, setShowSignupFail] = useState(false);
+    const [signupFailMessage, setSignupFailMessage] = useState('');
+    const [isLoginForm, setIsLoginForm] = useState(true);
+
     const modalRef = useRef(null);
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
+    const loginEmailRef = useRef(null);
+    const loginPasswordRef = useRef(null);
+    const signupEmailRef = useRef(null);
+    const signupUsernameRef = useRef(null);
+    const signupPasswordRef = useRef(null);
+
     const [login] = useMutation(LOGIN);
-    const closeModal = (e) => {
+    const [register] = useMutation(REGISTER);
+
+    const closeModal = () => {
+        setShowModal(false);
+        setIsLoginForm(true);
+    };
+
+    const handleClickOutside = (e) => {
         if (modalRef.current === e.target) {
-            setShowModel(false);
+            closeModal();
         };
     };
-    const handleSubmit = async (e) => {
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
         const data = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
+            email: loginEmailRef.current.value,
+            password: loginPasswordRef.current.value
         }
         const response = await login({
             variables: {
@@ -50,7 +90,6 @@ export const AuthModal = ({ showModal, setShowModel }) => {
                 password: data.password
             }
         });
-        console.log(response)
         const code = response.data.login.code;
         if (code !== 200) {
             setShowLoginFail(true);
@@ -61,7 +100,34 @@ export const AuthModal = ({ showModal, setShowModel }) => {
             const user = response.data.login.user;
             localStorage.setItem('userToken', token);
             localStorage.setItem('user', JSON.stringify(user));
-            setShowModel(false);
+            closeModal();
+        }
+    };
+    const handleSignupSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            email: signupEmailRef.current.value,
+            username: signupUsernameRef.current.value,
+            password: signupPasswordRef.current.value
+        }
+        const response = await register({
+            variables: {
+                email: data.email,
+                username: data.username,
+                password: data.password
+            }
+        });
+        const code = response.data.register.code;
+        if (code !== 200) {
+            setShowSignupFail(true);
+            setSignupFailMessage(response.data.register.message);
+        }
+        else {
+            const token = response.data.register.token;
+            const user = response.data.register.user;
+            localStorage.setItem('userToken', token);
+            localStorage.setItem('user', JSON.stringify(user));
+            closeModal();
         }
     };
     const animation = useSpring({
@@ -74,20 +140,40 @@ export const AuthModal = ({ showModal, setShowModel }) => {
     return (
         <>
             {showModal ? (
-                <StyledModalBackground ref={modalRef} onClick={closeModal}>
+                <StyledModalBackground ref={modalRef} onClick={handleClickOutside}>
                     <animated.div style={animation}>
-                        <form onSubmit={handleSubmit}>
-                            <StyledModalContainer>
-                                <StyledModalTitle>Login</StyledModalTitle>
+                        <StyledModalContainer isLoginForm={isLoginForm}>
+                            <StyledModalTitleContainer>
+                                <StyledModalLoginTitle isLoginForm={isLoginForm}>Login</StyledModalLoginTitle>
+                                <StyledModalSignupTitle isLoginForm={isLoginForm}>Signup</StyledModalSignupTitle>
+                            </StyledModalTitleContainer>
+                            <StyledModalSliderContainer>
+                                <StyledModalRadio onClick={() => setIsLoginForm(true)} type="radio" id="login" />
+                                <StyledModalRadio onClick={() => setIsLoginForm(false)} type="radio" id="signup" />
+                                <StyledModalLabel for="login">login</StyledModalLabel>
+                                <StyledModalLabel for="signup">signup</StyledModalLabel>
+                                <StyledModalSliderTab />
+                            </StyledModalSliderContainer>
+                            <StyledModalLoginContainer isLoginForm={isLoginForm} onSubmit={handleLoginSubmit}>
                                 <StyledModalText>Email</StyledModalText>
-                                <StyledInput ref={emailRef} type="text" placeholder="Email" required />
+                                <StyledInput ref={loginEmailRef} type="email" placeholder="example@gmail.com" required />
                                 <StyledModalText>Password</StyledModalText>
-                                <StyledInput ref={passwordRef} type="password" placeholder="Password" required />
-                                <button type="submit">login</button>
+                                <StyledInput ref={loginPasswordRef} type="password" placeholder="******" required />
+                                <StyledSubmitButton>login</StyledSubmitButton>
                                 {showLoginFail && <p>Login Fail: {loginFailMessage}</p>}
-                                <StyledCloseModalButton onClick={() => setShowModel(false)}>Never mind!</StyledCloseModalButton>
-                            </StyledModalContainer>
-                        </form>
+                            </StyledModalLoginContainer>
+                            <StyledModalSignupContainer isLoginForm={isLoginForm} onSubmit={handleSignupSubmit}>
+                                <StyledModalText>Email</StyledModalText>
+                                <StyledInput ref={signupEmailRef} type="email" placeholder="example@gmail.com" required />
+                                <StyledModalText>Username</StyledModalText>
+                                <StyledInput ref={signupUsernameRef} type="text" placeholder="John Wick" required />
+                                <StyledModalText>Password</StyledModalText>
+                                <StyledInput ref={signupPasswordRef} type="password" placeholder="******" required />
+                                <StyledSubmitButton>signup</StyledSubmitButton>
+                                {showSignupFail && <p>Signup Fail: {signupFailMessage}</p>}
+                            </StyledModalSignupContainer>
+                            <StyledCloseModalButton onClick={closeModal} />
+                        </StyledModalContainer>
                     </animated.div>
                 </StyledModalBackground>
             ) : null}

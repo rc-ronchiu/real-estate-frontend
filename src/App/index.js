@@ -24,8 +24,8 @@ export default function App() {
             }}
         >
             <StyledGlobalLayout />
-            <RatingModal showModal={showRatingModal} setShowModel={setShowRatingModal} propertyId={ratingModalPropertyId}/>
-            <AuthModal showModal={showAuthModal} setShowModel={setShowAuthModal} />
+            <RatingModal showModal={showRatingModal} setShowModal={setShowRatingModal} propertyId={ratingModalPropertyId}/>
+            <AuthModal showModal={showAuthModal} setShowModal={setShowAuthModal} />
             <Router primary={false} component={Fragment}>
                 <IndexPage path='/' />
                 <PropertyPage path='property/:propertyId' />
