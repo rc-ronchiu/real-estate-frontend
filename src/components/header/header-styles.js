@@ -24,7 +24,11 @@ export const StyledLogoContainer = styled(Link)`
     align-self: center;
 `;
 
-export const StyledHeaderButton = styled.div`
+export const StyledHeaderButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    color: ${colors.title};
     position: absolute;
     right: 10px;
     font-weight: bold;
@@ -33,9 +37,9 @@ export const StyledHeaderButton = styled.div`
 `;
 
 export const StyledLogo = styled.img`
-    height: 120px;
-    width: 120px;
-    margin-right: 8px;
+    height: 65px;
+    width: 65x;
+    margin-right: 15px;
 `;
 
 export const StyledTitleContainer = styled(Link)`

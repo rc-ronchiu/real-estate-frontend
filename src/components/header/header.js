@@ -1,4 +1,11 @@
-import { StyledHeaderBar, StyledHeaderContainer, StyledLogoContainer, StyledLogo, StyledTitle, StyledTitleContainer, StyledHeaderButton } from './header-styles';
+import { 
+    StyledHeaderBar, 
+    StyledHeaderContainer, 
+    StyledLogoContainer, 
+    StyledLogo, 
+    StyledTitle, 
+    StyledTitleContainer, 
+    StyledHeaderButtonContainer } from './header-styles';
 import { Logo } from '../../assets/images';
 import { useContext } from 'react';
 import { GlobalDataContext } from '../../utils/context';
@@ -12,6 +19,12 @@ const Header = () => {
         setShowAuthModal(true);
     };
     
+    const logout = () => {
+        localStorage.removeItem('userToken');
+        localStorage.removeItem('user');
+        window.location.reload();
+    };
+
     return (
         <StyledHeaderBar>
             <StyledHeaderContainer>
@@ -21,7 +34,11 @@ const Header = () => {
                 <StyledTitleContainer to='/'>
                     <StyledTitle>Real Estate</StyledTitle>
                 </StyledTitleContainer>
-                <StyledHeaderButton onClick={openModal}>Login</StyledHeaderButton>
+                <StyledHeaderButtonContainer>
+                    {!JSON.parse(localStorage.getItem('user')) &&<p onClick={openModal}>login</p>}
+                    {JSON.parse(localStorage.getItem('user')) && <p onClick={logout}>logout</p>}
+                    {JSON.parse(localStorage.getItem('user')) && <p>Hi, {JSON.parse(localStorage.getItem('user')).username}</p>}
+                </StyledHeaderButtonContainer>
             </StyledHeaderContainer>
         </StyledHeaderBar>
     );

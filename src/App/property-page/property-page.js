@@ -16,6 +16,7 @@ const PROPERTY = gql`
             thumbnailUrl
             comments {
                 id
+                userId
                 author
                 comment
             }

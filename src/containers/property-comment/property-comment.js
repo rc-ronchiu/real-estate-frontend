@@ -8,14 +8,13 @@ import {
     StyledCommentAuthor,
     StyledCommentText,
     StyledCommentDeleteButton,
-    StyledCommentInputContent,
-    StyledCommentAuthorInput,
+    StyledCommentSendButton,
     StyledCommentInput,
 } from './property-comment-styles';
 
-const UPDATE_COMMENTS = gql`
-    mutation UpdateComments($updateCommentsId: ID!, $comments: [commentInput]!) {
-        updateComments(id: $updateCommentsId, comments: $comments) {
+const ADD_COMMENT = gql`
+    mutation AddComment($propertyId: ID!, $userId: ID!, $author: String!, $comment: String) {
+        addComment(propertyId: $propertyId, userId: $userId, author: $author, comment: $comment) {
             code
             success
             message
@@ -23,84 +22,78 @@ const UPDATE_COMMENTS = gql`
                 id
                 comments {
                     id
+                    userId
                     comment
-                    author
                 }
             }
         }
     }
 `;
 
-const commentReducer = (state, action) => {
-    switch (action.type) {
-        case 'ADD_COMMENT':
-            const comments = [...state.comments];
-            comments.push({__typename: 'comment', id: state.comments[state.comments.length - 1].id + 1, author: action.payload.author, comment: action.payload.comment });
-            return { "comments": comments }
-        case 'REMOVE_COMMENT':
-            const commentsWithoutDeleted = state.comments.filter(comment => comment.id !== action.payload);
-            return { "comments": commentsWithoutDeleted }
-        default:
-            throw new Error();
+const DELETE_COMMENT = gql`
+    mutation DeleteComment($propertyId: ID!, $commentId: ID!) {
+        deleteComment(propertyId: $propertyId, commentId: $commentId) {
+            code
+            success
+            message
+            property {
+                id
+                comments {
+                    id
+                    userId
+                    comment
+                }
+            }
+        }
     }
-}
+`;
 
 const PropertyComment = ({ propertyId, comments }) => {
-    const [updateComments] = useMutation(UPDATE_COMMENTS);
-    const authorRef = useRef(null);
+    const [addComment] = useMutation(ADD_COMMENT);
+    const [deleteComment] = useMutation(DELETE_COMMENT);
     const commentRef = useRef(null);
-    const didMountRef = useRef(false);
-    const [author, setAuthor] = useState('');
-    const [comment, setComment] = useState('');
-    const [state, dispatch] = useReducer(commentReducer, { "comments": comments })
 
-    useEffect(() => {
-        if (didMountRef.current) {
-            let commentsWithoutId =[]
-            state.comments.map(comment => {
-                commentsWithoutId.push({author: comment.author, comment: comment.comment});
-            })
-            updateComments({
-                variables: {
-                    updateCommentsId: propertyId,
-                    comments: commentsWithoutId
-                }
-            })
-        }
-        else {
-            didMountRef.current = true;
-        }
-
-    }, [propertyId, state, updateComments]);
-
-    const handleSendButtonClick = async () => {
-        if (author !== '' && comment !== '') {
-            dispatch({ type: "ADD_COMMENT", payload: { author: author, comment: comment } });
-            setAuthor('');
-            setComment('');
-            authorRef.current.value = '';
-            commentRef.current.value = '';
-        }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data = commentRef.current.value;
+        addComment({variables: {
+            propertyId: propertyId,
+            userId: JSON.parse(localStorage.getItem('user')).id,
+            author: JSON.parse(localStorage.getItem('user')).username,
+            comment: data
+        }});
+        commentRef.current.value = '';
     };
+
+    const handleDelete = async (id) => {
+        deleteComment({variables: {
+            propertyId: propertyId,
+            commentId: id
+        }})
+    };
+
     return (
         <StyledCommentContainer>
             <StyledCommentTitle>Comments</StyledCommentTitle>
-            {state.comments?.map(comment => (
+            {comments?.map(comment => (
                 <StyledComment>
                     <StyledCommentContent>
                         <StyledCommentAuthor>{comment.author}</StyledCommentAuthor>
                         <StyledCommentText>{comment.comment}</StyledCommentText>
                     </StyledCommentContent>
-                    {localStorage.getItem('userToken') && <StyledCommentDeleteButton onClick={() => dispatch({ type: "REMOVE_COMMENT", payload: comment.id })}>Delete</StyledCommentDeleteButton>}
+                    {JSON.parse(localStorage.getItem('user'))?.id === comment.userId 
+                    ? 
+                    <StyledCommentDeleteButton onClick={() => handleDelete(comment.id)}>Delete</StyledCommentDeleteButton> :
+                    null}
                 </StyledComment>
             ))}
+            {JSON.parse(localStorage.getItem('user')) &&
             <StyledComment>
-                <StyledCommentInputContent>
-                    <StyledCommentAuthorInput type="text" ref={authorRef} placeholder="Name" onChange={(e) => setAuthor(e.target.value)} required />
-                    <StyledCommentInput type="text" ref={commentRef} placeholder="Comment" onChange={(e) => setComment(e.target.value)} required />
-                </StyledCommentInputContent>
-                <StyledCommentDeleteButton onClick={handleSendButtonClick}>Send</StyledCommentDeleteButton>
-            </StyledComment>
+                    <form onSubmit={handleSubmit}>
+                        <StyledCommentInput type="text" ref={commentRef} placeholder="Comment" required />
+                        <StyledCommentSendButton type="submit">Send</StyledCommentSendButton>
+                    </form>
+            </StyledComment>}
         </StyledCommentContainer>
     )
 }

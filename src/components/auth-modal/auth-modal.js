@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { useSpring, animated } from 'react-spring';
 import {
@@ -27,6 +27,8 @@ const LOGIN = gql`
 `;
 
 export const AuthModal = ({ showModal, setShowModel }) => {
+    const [showLoginFail, setShowLoginFail] = useState(false);
+    const [loginFailMessage, setLoginFailMessage] = useState('');
     const modalRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -48,10 +50,19 @@ export const AuthModal = ({ showModal, setShowModel }) => {
                 password: data.password
             }
         });
-        const token = response.data.login.token;
-        const user = response.data.login.user;
-        localStorage.setItem('userToken', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        console.log(response)
+        const code = response.data.login.code;
+        if (code !== 200) {
+            setShowLoginFail(true);
+            setLoginFailMessage(response.data.login.message);
+        }
+        else {
+            const token = response.data.login.token;
+            const user = response.data.login.user;
+            localStorage.setItem('userToken', token);
+            localStorage.setItem('user', JSON.stringify(user));
+            setShowModel(false);
+        }
     };
     const animation = useSpring({
         config: {
@@ -73,6 +84,7 @@ export const AuthModal = ({ showModal, setShowModel }) => {
                                 <StyledModalText>Password</StyledModalText>
                                 <StyledInput ref={passwordRef} type="password" placeholder="Password" required />
                                 <button type="submit">login</button>
+                                {showLoginFail && <p>Login Fail: {loginFailMessage}</p>}
                                 <StyledCloseModalButton onClick={() => setShowModel(false)}>Never mind!</StyledCloseModalButton>
                             </StyledModalContainer>
                         </form>

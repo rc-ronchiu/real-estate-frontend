@@ -40,17 +40,25 @@ export const StyledCommentText = styled.p`
     margin: 5px 0px;
 `;
 
-export const StyledCommentDeleteButton = styled.button`
-    background-color: #e91e63;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    outline: 0;
+export const StyledCommentDeleteButton = styled.p`
+    color: ${colors.text};
     text-transform: uppercase;
-    box-shadow: 0px 2px 2px lightgray;
-    transition: ease background-color 250ms;
     &:hover {
-        background-color: #ad1457;
+        color: ${colors.black};
+    }
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    z-index: 10;
+`;
+
+export const StyledCommentSendButton = styled.button`
+    color: ${colors.text};
+    padding: 10px 15px;
+    border: 0;
+    text-transform: uppercase;
+    &:hover {
+        color: ${colors.black};
     }
     position: absolute;
     right: 10px;
