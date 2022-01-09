@@ -54,7 +54,6 @@ const FileUpload = ({id, thumbnail}) => {
         });
         const { signedRequest, url } = response.data.signS3Request;
         await uploadToS3(acceptedFiles[0], signedRequest);
-        console.log(acceptedFiles[0]);
         await updatePropertyCoverImage({variables: {updatePropertyCoverImageId: id, url: url}});
     };
 
