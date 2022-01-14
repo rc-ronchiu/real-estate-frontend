@@ -16,7 +16,10 @@ import {
     StyledModalTitleContainer,
     StyledModalLoginContainer,
     StyledModalSignupContainer,
-    StyledSubmitButton
+    StyledSubmitButton,
+    StyledFailMessageContainer,
+    StyledFailMessage,
+    StyledWarningSign
 } from './auth-modal-styles';
 
 const LOGIN = gql`
@@ -71,6 +74,8 @@ export const AuthModal = ({ showModal, setShowModal }) => {
     const closeModal = () => {
         setShowModal(false);
         setIsLoginForm(true);
+        setShowLoginFail(false);
+        setShowSignupFail(false);
     };
 
     const handleClickOutside = (e) => {
@@ -142,7 +147,7 @@ export const AuthModal = ({ showModal, setShowModal }) => {
             {showModal ? (
                 <StyledModalBackground ref={modalRef} onClick={handleClickOutside}>
                     <animated.div style={animation}>
-                        <StyledModalContainer isLoginForm={isLoginForm}>
+                        <StyledModalContainer isLoginForm={isLoginForm} isLoginFail={showLoginFail} isSignupFail={showSignupFail}>
                             <StyledModalTitleContainer>
                                 <StyledModalLoginTitle isLoginForm={isLoginForm}>Login</StyledModalLoginTitle>
                                 <StyledModalSignupTitle isLoginForm={isLoginForm}>Signup</StyledModalSignupTitle>
@@ -160,7 +165,10 @@ export const AuthModal = ({ showModal, setShowModal }) => {
                                 <StyledModalText>Password</StyledModalText>
                                 <StyledInput ref={loginPasswordRef} type="password" placeholder="******" required />
                                 <StyledSubmitButton>login</StyledSubmitButton>
-                                {showLoginFail && <p>Login Fail: {loginFailMessage}</p>}
+                                {showLoginFail && <StyledFailMessageContainer>
+                                    <StyledWarningSign />
+                                    <StyledFailMessage>Login Fail: {loginFailMessage}</StyledFailMessage>
+                                    </StyledFailMessageContainer>}
                             </StyledModalLoginContainer>
                             <StyledModalSignupContainer isLoginForm={isLoginForm} onSubmit={handleSignupSubmit}>
                                 <StyledModalText>Email</StyledModalText>
@@ -170,7 +178,10 @@ export const AuthModal = ({ showModal, setShowModal }) => {
                                 <StyledModalText>Password</StyledModalText>
                                 <StyledInput ref={signupPasswordRef} type="password" placeholder="******" required />
                                 <StyledSubmitButton>signup</StyledSubmitButton>
-                                {showSignupFail && <p>Signup Fail: {signupFailMessage}</p>}
+                                {showSignupFail && <StyledFailMessageContainer>
+                                    <StyledWarningSign />
+                                    <StyledFailMessage>Signup Fail: {signupFailMessage}</StyledFailMessage>
+                                    </StyledFailMessageContainer>}
                             </StyledModalSignupContainer>
                             <StyledCloseModalButton onClick={closeModal} />
                         </StyledModalContainer>

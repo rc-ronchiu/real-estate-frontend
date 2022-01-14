@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../utils/styles';
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineWarning } from 'react-icons/ai';
 
 export const StyledModalBackground = styled.div`
     width: 100%;
@@ -18,7 +18,7 @@ export const StyledModalContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 400px;
-    height: ${(props) => props.isLoginForm ? '400px' : '500px'};
+    height: ${(props) => props.isLoginForm ? props.isLoginFail ? '460px' : '400px' : props.isSignupFail ? '510px' : '450px'};
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
     background: #fff;
     color: #000;
@@ -174,11 +174,31 @@ export const StyledInput = styled.input`
 
 export const StyledSubmitButton = styled.button.attrs({type: 'submit'})`
     align-self: center;
-    margin-top: 15px;
+    margin: 15px 0;
     padding: 5px 10px;
     border: 0;
     border-radius: 4px;
     font-size: 1rem;
     background-color: ${colors.title};
     cursor: pointer;
+`;
+
+export const StyledFailMessageContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.1rem 1rem;
+    background-color: ${colors.warning};
+    border-radius: 0.313rem;
+    align-self: center;
+`;
+
+export const StyledFailMessage = styled.p`
+    font-weight: bold;
+`;
+
+export const StyledWarningSign = styled(AiOutlineWarning)`
+    height: 1rem;
+    width: 1rem;
+    stroke-width: 3rem;
 `;

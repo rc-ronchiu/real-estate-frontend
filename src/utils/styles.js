@@ -15,7 +15,8 @@ export const colors = {
     header: '#14213d',
     text: '#454545',
     title: '#fca311',
-    shadowBlue: '#778da9'
+    shadowBlue: '#778da9',
+    warning: '#ff9966'
 }
 
 export const StyledGlobalLayout = createGlobalStyle`
