@@ -7,7 +7,6 @@ export const StyledCommentTitle = styled.h1`
 export const StyledCommentContainer = styled.div`
     display: flex;
     flex-direction: column;
-
     width: 50rem;
 `;
 
@@ -38,6 +37,8 @@ export const StyledCommentText = styled.p`
     color: ${colors.grey};
     font-size: 1rem;
     margin: 5px 0px;
+    max-width: 90%;
+    font-family: 'Open Sans' sans-serif !important;
 `;
 
 export const StyledCommentDeleteButton = styled.p`
@@ -72,22 +73,8 @@ export const StyledCommentInputContent = styled.div`
     align-items: flex-start;
 `;
 
-export const StyledCommentAuthorInput = styled.input`
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    outline: 0;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: grey;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-`;
-
 export const StyledCommentInput = styled.input`
-    font-family: inherit;
-    width: 100%;
+    width: 40rem;
     border: 0;
     outline: 0;
     font-size: 1rem;

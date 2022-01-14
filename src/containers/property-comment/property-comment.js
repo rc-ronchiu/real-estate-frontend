@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import React, { useReducer, useState, useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import {
     StyledCommentTitle,
     StyledCommentContainer,
@@ -90,7 +90,8 @@ const PropertyComment = ({ propertyId, comments }) => {
             {JSON.parse(localStorage.getItem('user')) &&
             <StyledComment>
                     <form onSubmit={handleSubmit}>
-                        <StyledCommentInput type="text" ref={commentRef} placeholder="Comment" required />
+                        <StyledCommentAuthor>{JSON.parse(localStorage.getItem('user')).username}</StyledCommentAuthor>
+                        <StyledCommentInput type="text" ref={commentRef} placeholder="Leave your comment here..." required />
                         <StyledCommentSendButton type="submit">Send</StyledCommentSendButton>
                     </form>
             </StyledComment>}
