@@ -6,7 +6,7 @@ import { useQuery, gql } from '@apollo/client';
 import QueryResult from '../../components/query-result';
 import Pagination from '../../components/pagination/pagination';
 import { GlobalDataContext } from '../../utils/context';
-import { StyledToolbar, StyledSortingSelector } from './index-page-styles';
+import { StyledSortingButtonContainer, StyledPagination, StyledSortingButton } from './index-page-styles';
 
 const PROPERTIES = gql`
     query PropertiesForHome {
@@ -32,7 +32,7 @@ const IndexPage = () => {
     const [propertiesForHome, setPropertiesForHome] = useState([]);
     const [sortType, setSortType] = useState('ratingValue');
     useEffect(() => {
-        if (loading) return;
+        if (!data) return;
         const sortArray = type => {
             const types = {
                 ratingValue: 'ratingValue',
@@ -53,21 +53,25 @@ const IndexPage = () => {
         return propertiesForHome.slice(startIndex, endIndex);
     }, [currentPage, propertiesForHome]);
 
+    const handleClick = (sortType) => {
+        setSortType(sortType);
+    };
+
     return (
         <Layout grid>
             <QueryResult error={error} loading={loading} data={data}>
-                <StyledToolbar>
-                    <Pagination currentPage={currentPage} itemCount={data?.propertiesForHome?.length} pageSize={pageSize} onPageChange={page => setCurrentPage(page)} />
-                    <StyledSortingSelector onChange={(e) => setSortType(e.target.value)}>
-                        <option value="ratingValue">Rating Value</option>
-                        <option value="ratings">Ratings</option>
-                        <option value="views">Views</option>
-                    </StyledSortingSelector>
-                </StyledToolbar>
+                <StyledSortingButtonContainer>
+                    <StyledSortingButton onClick={() => handleClick('ratingValue')} type="left" sortType={sortType} name="ratingValue">Rating Value</StyledSortingButton>
+                    <StyledSortingButton onClick={() => handleClick('ratings')} type="mid" sortType={sortType} name="ratings">Ratings</StyledSortingButton>
+                    <StyledSortingButton onClick={() => handleClick('views')} type="right" sortType={sortType} name="views">Views</StyledSortingButton>
+                </StyledSortingButtonContainer>
                 {slicedData?.map((property) => {
                     const thumbnail = property.thumbnailUrl === null ? DefaultHouse : property.thumbnailUrl;
                     return (<PropertyCard key={property.id} property={{ ...property, thumbnail: thumbnail }} />);
                 })}
+                <StyledPagination>
+                    <Pagination currentPage={currentPage} itemCount={data?.propertiesForHome?.length} pageSize={pageSize} onPageChange={page => setCurrentPage(page)} />
+                </StyledPagination>
             </QueryResult>
         </Layout>
     );

@@ -6,9 +6,10 @@ export const StyledPaginationContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     height: 3rem;
     width: 100%;
-    gap: 0.5rem;
+    gap: 0.8rem;
 `;
 
 export const StyledPaginationLeft = styled(AiOutlineLeft)`
@@ -45,19 +46,19 @@ export const StyledPaginationDot = styled.div`
 `;
 
 export const StyledPaginationPageNumber = styled.div`
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.3rem;
-    border: 1px solid gray;
+    height: 2.5rem;
+    width: 2.5rem;
     font-size: 1.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color: ${colors.black};
     cursor: pointer;
+    font-size: 0.875rem;
     ${(props) => props.selected &&
     `
         cursor: default; 
-        background-color: ${colors.grey};
+        background-color: ${colors.title};
+        border-radius: 0.313rem;
     `};
 `;

@@ -27,17 +27,14 @@ export const StyledModalContainer = styled.div`
 `;
 
 export const StyledCloseModalButton = styled.button`
-    background-color: #e91e63;
-    color: white;
     padding: 10px 15px;
-    border-radius: 5px;
-    outline: 0;
     text-transform: uppercase;
     margin: 10px 0px;
-    box-shadow: 0px 2px 2px lightgray;
-    transition: ease background-color 250ms;
+    opacity: 0.5;
+    border: 0;
+    border-radius: 0.313rem;
     &:hover {
-        background-color: #ad1457;
+        opacity: 1;
     }
     cursor: pointer;
     position: absolute;

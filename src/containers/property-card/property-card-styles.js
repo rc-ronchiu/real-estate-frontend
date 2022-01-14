@@ -14,7 +14,7 @@ export const StyledCardContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 24rem;
+  height: 22rem;
   width: 20rem;
   margin: 0.5rem;
   overflow: hidden;
@@ -30,7 +30,6 @@ export const StyledCardContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
     padding: 0.5rem;
 `;
 
@@ -47,14 +46,14 @@ export const StyledCardImage = styled.img`
 `;
 
 export const StyledCardBodyContainer = styled.div`
-    padding: 1rem;
+    padding: 0 1rem;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 `;
 
-export const StyledCardTitle = styled.h3`
+export const StyledCardTitle = styled.p`
     text-align: center;
     font-size: 1.4rem;
     line-height: 1rem;
@@ -66,6 +65,7 @@ export const StyledCardTitle = styled.h3`
 export const StyledCardAddress = styled.p`
     font-size: 0.8rem;
     opacity: 0.6;
+    margin-top: 0;
 `;
 
 export const StyledCardFooterContainer = styled.div`

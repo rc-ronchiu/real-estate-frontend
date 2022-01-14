@@ -13,7 +13,7 @@ import {
 } from './card-skeleton-styles';
 
 const CardSkeleton = () => {
-    return Array(9).fill(
+    return Array(6).fill(
         <StyledCardSkeletonContainer >
             <StyledCardSkeletonContentContainer>
                 <StyledCardSkeletonImage />

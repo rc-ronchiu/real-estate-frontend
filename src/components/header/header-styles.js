@@ -8,7 +8,7 @@ export const StyledHeaderBar = styled.div`
     align-items: center;
     justify-content: center;
     padding: 5px 30px;
-    min-height: 8rem;
+    height: 6rem;
     background-color: ${colors.header};
 `;
 
@@ -33,12 +33,22 @@ export const StyledHeaderButtonContainer = styled.div`
     right: 10px;
     font-weight: bold;
     font-size: 1rem;
+    cursor: default;
+    align-items: center;
+`;
+
+export const StyledHeaderButton = styled.p`
+    color: ${colors.header};
+    background-color: ${colors.title};
+    font-weight: bold;
+    padding: 0.616rem 1rem;
+    border-radius: 0.313rem;
     cursor: pointer;
 `;
 
 export const StyledLogo = styled.img`
-    height: 65px;
-    width: 65x;
+    height: 40px;
+    width: 40px;
     margin-right: 15px;
 `;
 
@@ -49,4 +59,6 @@ export const StyledTitleContainer = styled(Link)`
 export const StyledTitle = styled.h1`
     color: ${colors.title};
     font-family: system-ui;
+    font-weight: bold;
+    font-size: 35px;
 `;

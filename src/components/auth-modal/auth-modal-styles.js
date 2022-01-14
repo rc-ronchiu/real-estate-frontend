@@ -159,6 +159,7 @@ export const StyledModalText = styled.p`
 `;
 
 export const StyledInput = styled.input`
+    text-indent: 0.5rem;
     font-family: inherit;
     width: 20rem;
     border: 1px solid grey;

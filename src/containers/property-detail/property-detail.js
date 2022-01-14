@@ -5,7 +5,8 @@ import {
     StyledPropertyDetail, 
     StyledDetailRow, 
     StyledDetailItem,
-    StyledDescription
+    StyledDescription,
+    StyledVoteButton
 } from './property-detail-styles';
 import RatingValue from '../../components/rating-value';
 import { DefaultHouse } from '../../assets/images';
@@ -44,7 +45,7 @@ const PropertyDetail = ({ property }) => {
                     <StyledDetailItem>
                         <h4>Rating</h4>
                         <RatingValue>{ratingValue}</RatingValue>
-                        <div onClick={openModal}>Leave your rating here</div>
+                        <StyledVoteButton onClick={openModal}>Vote here</StyledVoteButton>
                     </StyledDetailItem>
                     <StyledDetailItem>
                         <h4>Address</h4>

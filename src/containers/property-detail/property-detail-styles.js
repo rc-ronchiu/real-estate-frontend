@@ -54,3 +54,7 @@ export const StyledDescription = styled.p`
     font-size: 1.2rem;
     color: ${colors.grey};
 `;
+
+export const StyledVoteButton = styled.div`
+    cursor: pointer;
+`;
