@@ -25,12 +25,13 @@ const PROPERTIES = gql`
 const IndexPage = () => {
     const {
         currentPage,
-        setCurrentPage
+        setCurrentPage,
+        sortType,
+        setSortType
     } = useContext(GlobalDataContext);
     const pageSize = 6;
     const { loading, error, data } = useQuery(PROPERTIES);
     const [propertiesForHome, setPropertiesForHome] = useState([]);
-    const [sortType, setSortType] = useState('ratingValue');
     useEffect(() => {
         if (!data) return;
         const sortArray = type => {

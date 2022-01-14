@@ -12,15 +12,18 @@ export default function App() {
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [ratingModalPropertyId, setRatingModalPropertyId] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [sortType, setSortType] = useState('ratingValue');
 
     return (
         <GlobalDataContext.Provider 
             value={{
                 currentPage,
+                sortType,
                 setCurrentPage,
                 setShowRatingModal,
                 setShowAuthModal,
-                setRatingModalPropertyId
+                setRatingModalPropertyId,
+                setSortType
             }}
         >
             <StyledGlobalLayout />
