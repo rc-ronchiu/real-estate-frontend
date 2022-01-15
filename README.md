@@ -7,4 +7,4 @@ Click [here](http://54.175.102.152:3000/) to visit Real Estate.
 
 ## Demo
 
-[![Watch the video](https://img.youtube.com/vi/veUqGJ1oLMY/default.jpg)](https://youtu.be/veUqGJ1oLMY)
+[![Watch the video](https://img.youtube.com/vi/veUqGJ1oLMY/maxresdefault.jpg)](https://youtu.be/veUqGJ1oLMY)
