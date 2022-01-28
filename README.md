@@ -4,12 +4,10 @@ The website is built to reveal the real situation of real estates and that is th
 
 ## Tech Stack
 ### Front-end:
-React\n
-Styled Components
+React/Styled Components
 
 ### Back-end:
-Apollo\n
-Node.js
+Apollo/Node.js
 
 ### Cloud Service
 AWS EC2 S3
